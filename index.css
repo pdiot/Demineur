@@ -1,0 +1,59 @@
+.cellule {
+	width: 50px;
+	height: 50px;
+	
+}
+
+tr {
+	font-size:0rem;
+}
+
+td {
+	padding: 0;
+	border-spacing: 0px;
+}
+
+td button {
+	padding: 0;
+	font-family: "Arvo";
+	font-size: 2rem;
+	text-align: center;
+}
+
+.fa-bomb {
+	color: crimson;
+	
+}
+
+button:disabled {
+	background-color: darkslategrey;
+	border: 0px;
+}
+
+.b0 {
+	color: whitesmoke;
+}
+
+.b1 {
+	color: forestgreen;
+}
+
+.b2 {
+	color: darkblue;
+}
+
+.b3 {
+	color: firebrick;
+}
+
+.btn-dark {
+	width: 100%;
+}
+
+.container {
+	width:80%;
+}
+
+#nbrestants {
+	display: inline;
+}
