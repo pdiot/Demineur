@@ -40,13 +40,14 @@ function init() {
 		lignes.forEach(function(ligne){
 			ligne.forEach(function(cellule){
 				if (i < nbMines) {
-					if (getRandomInt(60)<10){
+					if(cellule.bombe==="false"){
+						if (getRandomInt(60)<10){
 						cellule.bombe="true";
 						i++;
 						console.log("nb mines posées après pose: " + i);
-					}
-				}
-				
+						}
+					}					
+				}				
 			})
 		});	
 	}
