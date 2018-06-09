@@ -85,7 +85,7 @@ function drawGrid() {
 			button.setAttribute("bombe", cellule.bombe);
 			button.setAttribute("ligne", cellule.ligne);
 			button.setAttribute("colonne", cellule.colonne);
-			button.setAttribute("id", "b"+cellule.ligne+cellule.colonne);
+			button.setAttribute("id", "bx"+cellule.ligne+"y"+cellule.colonne);
 			button.classList.add("cellule");
 			button.addEventListener("click", cliqueCellule);
 			td.appendChild(button);
@@ -110,7 +110,7 @@ function validate() {
 	} else {
 		for (i = 0; i < nbLignes; i++) {
 			for (j = 0; j < nbLignes; j++) {
-				var button = document.getElementById("b"+i+j);
+				var button = document.getElementById("bx"+i+"y"+j);
 				if (button.getAttribute("bombe") === "true" && button.classList.contains("fa-flag")) {
 					
 				} else {
@@ -187,43 +187,42 @@ function compterBombes(button) {
 	if (ligne != 0) {
 		
 		if (colonne != 0) {
-			var b7 = document.getElementById("b"+(ligne-1)+(colonne-1));
+			var b7 = document.getElementById("bx"+(ligne-1)+"y"+(colonne-1));
 			atester.push(b7);
 		}
 		
 		if (colonne != nbLignes -1) {
-			var b9 = document.getElementById("b"+(ligne-1)+(parseInt(colonne)+1));
+			var b9 = document.getElementById("bx"+(ligne-1)+"y"+(parseInt(colonne)+1));
 			atester.push(b9);
 		}
 		
-		var b8 = document.getElementById("b"+(ligne-1)+(colonne));
+		var b8 = document.getElementById("bx"+(ligne-1)+"y"+(colonne));
 		atester.push(b8);		
 	}
 	
 	if (colonne != 0) {
-		var b4 = document.getElementById("b"+(ligne)+(colonne-1));
+		var b4 = document.getElementById("bx"+(ligne)+"y"+(colonne-1));
 		atester.push(b4);
 	}
 	
 	if (colonne != nbLignes-1) {
-		var b6 = document.getElementById("b"+(ligne)+(parseInt(colonne)+1));
+		var b6 = document.getElementById("bx"+(ligne)+"y"+(parseInt(colonne)+1));
 		atester.push(b6);
 	}
 	
 	if (ligne != nbLignes-1) {
 		
 		if (colonne != 0) {
-			var b1 = document.getElementById("b"+(parseInt(ligne)+1)+(colonne-1));
+			var b1 = document.getElementById("bx"+(parseInt(ligne)+1)+"y"+(colonne-1));
 			atester.push(b1);
 		}
 		
 		if (colonne != nbLignes -1) {
-			var b3 = document.getElementById("b"+(parseInt(ligne)+1)+(parseInt(colonne)+1));
+			var b3 = document.getElementById("bx"+(parseInt(ligne)+1)+"y"+(parseInt(colonne)+1));
 			atester.push(b3);
 		}
-		var b2 = document.getElementById("b"+(parseInt(ligne)+1)+(colonne));
-		atester.push(b2);
-			
+		var b2 = document.getElementById("bx"+(parseInt(ligne)+1)+"y"+(colonne));
+		atester.push(b2);	
 	}
 	
 	var ret=0;
@@ -257,13 +256,29 @@ function compterBombes(button) {
 }
 
 function check(button) {
+	console.log("cellule " + button.getAttribute("id"));
 	if (button.getAttribute("bombe")==="false") {
+		console.log("pas bombe");
 		return 0;
 	} else {
 		return 1;
+		console.log("bombe");
 	}
 }
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
+}
+
+function test() {
+	var cells = $(".cellule");
+	cells.each(function(index, cell){
+		if (cell.getAttribute("bombe")==="true") {
+			var icone = document.createElement("i");
+			icone.classList.add("fas");
+			icone.classList.add("fa-bomb");
+			cell.appendChild(icone);
+			cell.setAttribute("disabled", "true");
+		}
+	});
 }
